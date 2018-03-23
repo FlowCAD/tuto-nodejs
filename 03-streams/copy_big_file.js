@@ -7,10 +7,10 @@ fs.stat(file, (err, stat) => {
     let read = fs.createReadStream(file)
     read.on('data', (chunk) => {
         progress += chunk.length
-        console.log(`Lecture à ${(progress / total)*100} %`)
+        console.log(`Lecture à ${Math.round(100 * progress / total)} %`)
     })
     
     read.on('end', () => {
-        console.log('fin de lecture')
+        console.log('Fin de lecture')
     })
 })
