@@ -1,5 +1,5 @@
 # tuto-nodejs
-A basic nodejs tutorial.
+A basic NodeJS tutorial with NodeJS & Express.
 
 ## References
 * https://www.grafikart.fr/formations/nodejs
