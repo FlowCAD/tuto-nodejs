@@ -3,3 +3,4 @@
 04-modules/node_modules/*
 05-express-basics/node_modules/*
 06-express/node_modules/*
+06-express/public/semantic/*
