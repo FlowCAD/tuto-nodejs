@@ -18,20 +18,18 @@ app.use(session({
     saveUninitialized: true,
     cookie: {secure: false}
 }))
+app.use(require('./middlewares/flash'))
 
 
 // Routes
 app.get('/', (req, res) => {
-    if (req.session.error) {
-        res.locals.error = req.session.error
-        req.session.error = undefined
-    }
+    console.log(req.session)
     res.render('pages/index')
 })
 
 app.post('/', (req, res) => {
     if(!req.body.message) {
-        req.session.error = "Il y a une erreur"
+        req.flash('error', "Le message est vide !")
         res.redirect('/')
     }
     console.log(req.body)
