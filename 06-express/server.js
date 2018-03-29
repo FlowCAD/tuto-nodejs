@@ -28,11 +28,17 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
+    console.log(req.body)
     if(!req.body.message) {
         req.flash('error', "Le message est vide !")
         res.redirect('/')
+    } else {
+        let Message = require('./models/message')
+        Message.create(req.body.message, () => {
+            req.flash('success', "Message envoyé !")
+            res.redirect('/')
+        })
     }
-    console.log(req.body)
 })
 
 
