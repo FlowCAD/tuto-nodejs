@@ -2,6 +2,7 @@ let express = require('express')
 let app = express()
 let bodyParser = require('body-parser')
 let session = require('express-session')
+let Message = require('./models/message')
 
 
 // Template
@@ -23,8 +24,9 @@ app.use(require('./middlewares/flash'))
 
 // Routes
 app.get('/', (req, res) => {
-    console.log(req.session)
-    res.render('pages/index')
+    Message.all( (messages) => {
+        res.render('pages/index', {messages: messages})
+    })
 })
 
 app.post('/', (req, res) => {
@@ -33,7 +35,6 @@ app.post('/', (req, res) => {
         req.flash('error', "Le message est vide !")
         res.redirect('/')
     } else {
-        let Message = require('./models/message')
         Message.create(req.body.message, () => {
             req.flash('success', "Message envoyé !")
             res.redirect('/')
