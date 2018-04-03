@@ -42,5 +42,9 @@ app.post('/', (req, res) => {
     }
 })
 
-
+app.get('/message/:id', (req, res) => {
+    Message.find(req.params.id, (message) => {
+        res.render('messages/show', {message: message})
+    })
+})
 app.listen(8080)

@@ -19,6 +19,7 @@
                     <div class="date">
                         <%= message.created_at.fromNow() %>
                     </div>
+                    <a class="link" href="/message/<%=message.id%>">Lien</a>
                 </div>
                 <div class="test">
                     <%= message.content%>

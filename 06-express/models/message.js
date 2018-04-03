@@ -7,6 +7,10 @@ class Message {
         this.row = row
     }
 
+    get id () {
+        return this.row.id
+    }
+
     get content () {
         return this.row.content
     }
@@ -26,6 +30,13 @@ class Message {
         connection.query('SELECT * FROM messages', (err, rows) => {
             if (err) throw err
             callback(rows.map((row) => new Message (row)))
+        })
+    }
+
+    static find (id, callback) {
+        connection.query('SELECT * FROM messages WHERE id = ?', [id], (err, rows) => {
+            if (err) throw err
+            callback(new Message (rows[0]))
         })
     }
 
